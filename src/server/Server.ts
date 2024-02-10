@@ -1,4 +1,5 @@
 import express from "express";
+import { router } from "./routes";
 
 export class Server {
   public server: express.Application;
@@ -14,10 +15,8 @@ export class Server {
     this.server.use(express.urlencoded({ extended: true }));
   }
 
-  routes() {
-    this.server.use("/", (req, res) => {
-      return res.json({ message: "Hello World!" });
-    });
+  routes(): void {
+    this.server.use(router);
   }
 }
 
