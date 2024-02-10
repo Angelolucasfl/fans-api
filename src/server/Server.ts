@@ -1,5 +1,6 @@
 import express from "express";
 import { router } from "./routes";
+import "dotenv/config";
 
 export class Server {
   public server: express.Application;

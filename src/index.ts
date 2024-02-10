@@ -1,3 +1,3 @@
-import server from "./server/server";
+import server from "./server/Server";
 
-server.listen(8000, () => console.log("server runing on http://127.0.0.1:8000"));
+server.listen(process.env.PORT || 8000, () => console.log(`server runing on http://127.0.0.1:${process.env.PORT || 8000}`));
