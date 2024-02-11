@@ -1,6 +1,8 @@
 import express from "express";
-import { router } from "./routes";
+import "./shared/services/translations.yup";
 import "dotenv/config";
+import { router } from "./routes";
+
 
 export class Server {
   public server: express.Application;

@@ -8,7 +8,7 @@ router.get("/", (_, res) => {
   return res.status(StatusCodes.OK).json({ message: "ok!" });
 });
 
-router.post("/artist", ArtistController.create);
+router.post("/artist", ArtistController.createBodyValidator, ArtistController.create);
 
 
 export { router };
