@@ -1,5 +1,5 @@
-import { Request, RequestHandler, Response } from "express";
-import { StatusCodes } from "http-status-codes"; 
+import { Request, Response } from "express";
+import { validation } from "../../shared/middlewares";
 import * as yup from "yup";
 
 
@@ -7,29 +7,19 @@ interface IArtist {
   nome: string;
 }
 
-const bodyValidation: yup.Schema<IArtist> = yup.object().shape({
-  nome: yup.string().required().min(1)
-});
+interface IFilter {
+  filter: string;
+}
 
+export const createValidation = validation((getSchema) => ({
+  body: getSchema<IArtist>(yup.object().shape({
+    nome: yup.string().required().min(1)
+  })),
 
-export const createBodyValidator: RequestHandler = async (req, res, next) => {
-  try{
-    await bodyValidation.validate(req.body, { abortEarly: false });
-
-    return next();
-  } catch (error) {
-    const yupError = error as yup.ValidationError;
-    const errors: Record<string, string> = {};
-
-    yupError.inner.forEach(error => {
-      if (error.path === undefined) return;
-      errors[error.path] = error.message;
-    });
-
-    return res.status(StatusCodes.BAD_REQUEST).json({ errors });
-  }
-};
-
+  query: getSchema<IFilter>(yup.object().shape({
+    filter: yup.string().required().min(3)
+  }))
+}));
 
 
 export const create = async (req: Request<{}, {}, IArtist>, res: Response) => {
