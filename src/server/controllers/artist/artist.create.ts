@@ -8,7 +8,7 @@ interface IArtist {
 }
 
 interface IFilter {
-  filter: string;
+  filter?: string;
 }
 
 export const createValidation = validation((getSchema) => ({
@@ -17,9 +17,10 @@ export const createValidation = validation((getSchema) => ({
   })),
 
   query: getSchema<IFilter>(yup.object().shape({
-    filter: yup.string().required().min(3)
+    filter: yup.string().optional().min(3)
   }))
 }));
+
 
 
 export const create = async (req: Request<{}, {}, IArtist>, res: Response) => {
