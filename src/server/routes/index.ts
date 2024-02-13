@@ -12,5 +12,9 @@ router.post("/artist",
   ArtistController.createValidation,
   ArtistController.create);
 
+router.get("/artist",
+  ArtistController.getAllValidation,
+  ArtistController.getAll);
+
 
 export { router };
