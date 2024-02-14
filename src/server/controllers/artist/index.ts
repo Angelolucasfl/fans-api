@@ -1,7 +1,13 @@
-import * as create from "./artist.create"; 
-import * as getAll from "./artist.getAll";
+import * as create from "./create"; 
+import * as getAll from "./getAll";
+import * as getById from "./getById";
+import * as updateById from "./updateById";
+import * as deleteById from "./deleteById";
 
 export const ArtistController = {
   ...create,
-  ...getAll
+  ...getAll,
+  ...getById,
+  ...updateById,
+  ...deleteById
 };

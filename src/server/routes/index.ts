@@ -16,5 +16,16 @@ router.get("/artist",
   ArtistController.getAllValidation,
   ArtistController.getAll);
 
+router.get("/artist/:id",
+  ArtistController.getByIdValidation,
+  ArtistController.getById);
+
+router.put("/artist/:id",
+  ArtistController.updateByIdValidation,
+  ArtistController.updateById);
+
+router.delete("/artist/:id",
+  ArtistController.deleteByIdValidation,
+  ArtistController.deleteById);
 
 export { router };
