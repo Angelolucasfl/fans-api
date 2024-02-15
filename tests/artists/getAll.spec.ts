@@ -14,10 +14,22 @@ describe("Artist - getAll", () => {
   });
 
 
-  it("Shouldn't be able to pass an incorrect type for the filter", async () => {
+  it("Shouldn't be able to pass an incorrect type for the query", async () => {
     const response1 = await testServer.get("/artist").query({
       page: "test",
       limit: "test",
+    });
+
+
+    expect(response1.body).toHaveProperty("errors.query.page");
+    expect(response1.body).toHaveProperty("errors.query.limit");
+    expect(response1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
+  });
+
+  it("Shouldn't be able to pass 0 as a query parameter", async () => {
+    const response1 = await testServer.get("/artist").query({
+      page: 0,
+      limit: 0,
     });
 
 

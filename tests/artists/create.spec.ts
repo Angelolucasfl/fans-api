@@ -21,4 +21,12 @@ describe("Artist - Create", () => {
     expect(response1.body).toHaveProperty("errors.body.nome");
   });
 
+  it("Shouldn't be able to send a empty body object", async () => {
+    const response1 = await testServer.post("/artist").send({
+    });
+
+    expect(response1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
+    expect(response1.body).toHaveProperty("errors.body.nome");
+  });
+
 });
