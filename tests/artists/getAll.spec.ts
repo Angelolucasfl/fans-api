@@ -3,14 +3,16 @@ import { testServer } from "../jest.setup";
 
 describe("Artist - getAll", () => {
   it("Should return all the artist", async () => {
-    const response1 = await testServer.get("/artist").query({
-      page: 1,
-      limit: 10,
-      filter: "test"
+    const response1 = await testServer.post("/artist").send({
+      nome: "Nirvana"
     });
+    expect(response1.statusCode).toEqual(StatusCodes.CREATED);
 
-    expect(response1.statusCode).toEqual(StatusCodes.OK);
-    expect(response1.body).toEqual(expect.any(Object));
+    const response2 = await testServer.get("/artist").send();
+
+    expect(Number(response2.header["x-total-count"])).toBeGreaterThan(0);
+    expect(response2.statusCode).toEqual(StatusCodes.OK);
+    expect(response2.body).toBeDefined();
   });
 
 

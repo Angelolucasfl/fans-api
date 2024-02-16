@@ -3,13 +3,16 @@ import { testServer } from "../jest.setup";
 
 describe("Artist - updateById", () => {
   it("Should update one artist based on the id passed", async () => {
-    const id = 1;
-    const response1 = await testServer.put(`/artist/${id}`).send({
+    const response1 = await testServer.post("/artist").send({
       nome: "Nirvana"
     });
+    expect(response1.statusCode).toEqual(StatusCodes.CREATED);
 
-    expect(response1.statusCode).toEqual(StatusCodes.OK);
-    expect(response1.body).toEqual(expect.any(Object));
+    const response2 = await testServer.put(`/artist/${response1.body}`).send({
+      nome: "Nirvana",
+    });
+
+    expect(response2.statusCode).toEqual(StatusCodes.NO_CONTENT);
   });
 
   it("Shouldn't be able to pass an invalid parameter type", async () => {
@@ -48,6 +51,15 @@ describe("Artist - updateById", () => {
 
     expect(response1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
     expect(response1.body).toHaveProperty("errors.body.nome");
+  });
+
+  it("Shouldn't be able to access an non existent record", async () => {
+    const response1 = await testServer.put("/artist/99999").send({
+      nome:"Nirvana"
+    });
+  
+    expect(response1.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(response1.body).toHaveProperty("errors.default");
   });
 
 });
