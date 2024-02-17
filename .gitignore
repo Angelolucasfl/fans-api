@@ -2,3 +2,5 @@
 /build
 .env
 /coverage
+.vercel
+.sqlite
