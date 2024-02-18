@@ -2,14 +2,13 @@ import { Request, Response } from "express";
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
 import * as yup from "yup";
+import { IArtist } from "../../database/models";
 
 
-interface IArtist {
-  nome: string;
-}
+interface IBodyProps extends Omit<IArtist, "id">{}
 
 export const createValidation = validation((getSchema) => ({
-  body: getSchema<IArtist>(yup.object().shape({
+  body: getSchema<IBodyProps>(yup.object().shape({
     nome: yup.string().required().min(1)
   }))
 }));

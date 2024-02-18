@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
+import { IArtist } from "../../database/models";
 import * as yup from "yup";
 
 
@@ -8,7 +9,7 @@ interface IParamsProps {
   id?: number;
 }
 
-interface IBodyProps {
+interface IBodyProps extends Omit<IArtist, "id">{
   nome: string;
 }
 
