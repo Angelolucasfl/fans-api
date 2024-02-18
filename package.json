@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "test": "jest",
-    "build": "tsc",
-    "start": "node build/index.js",
+    "postinstall": "tsc",
+    "start": "node ./build/index.js",
     "knex:migrate": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest",
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback --all",
