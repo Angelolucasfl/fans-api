@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
+import { ArtistProvider } from "../../database/providers/artist";
 import * as yup from "yup";
 
 
@@ -23,9 +24,15 @@ export const getAllValidation = validation((getSchema) => ({
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
   res.setHeader("access-control-expose-headers", "x-total-count");
   res.setHeader("x-total-count", 1);
+  const results = await ArtistProvider.getAll();
 
-  return res.status(StatusCodes.OK).json({
-    id: 1,
-    nome: "Nirvana",
-  });
+  if (results instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: results.message
+      }
+    });
+  }
+
+  return res.status(StatusCodes.OK).json(results);
 };
