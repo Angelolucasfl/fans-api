@@ -1,7 +1,7 @@
 import { ETableNames } from "../../ETableNames";
 import { Knex } from "../../knex";
 
-export const deleteById = async(id: number): Promise<void | Error> => {
+export const DeleteById = async(id: number): Promise<void | Error> => {
   try{
     const result = await Knex(ETableNames.artist).where("id", "=", id).del();
 

@@ -1,13 +1,15 @@
 import * as Create from "./Create"; 
 import * as GetAll from "./GetAll";
 import * as GetById from "./GetById";
-// import * as updateById from "./updateById";
-// import * as deleteById from "./deleteById";
+import * as UpdateById from "./UpdateById";
+import * as DeleteById from "./DeleteById";
+import * as Count from "./Count";  
 
 export const ArtistProvider = {
   ...Create,
   ...GetAll,
   ...GetById,
-  // ...updateById,
-  // ...deleteById
+  ...UpdateById,
+  ...DeleteById,
+  ...Count,
 };

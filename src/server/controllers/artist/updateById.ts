@@ -3,6 +3,7 @@ import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
 import { IArtist } from "../../database/models";
 import * as yup from "yup";
+import { ArtistProvider } from "../../database/providers/artist";
 
 
 interface IParamsProps {
@@ -26,11 +27,21 @@ export const updateByIdValidation = validation((getSchema) => ({
 
 
 export const updateById = async (req: Request<IParamsProps, {}, IBodyProps>, res: Response) => {
-  if (Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    errors: {
-      default: "Registro não encontrado!"
-    }
-  });
+  if(!req.params.id){
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: {
+        default: "O parâmetro id é obrigatório"
+      }
+    });
+  }
+  const result = await ArtistProvider.UpdateById(req.params.id, req.body);
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message
+      }
+    });
+  }
 
-  return res.status(StatusCodes.NO_CONTENT).send();
+  return res.status(StatusCodes.NO_CONTENT).json(result);
 };

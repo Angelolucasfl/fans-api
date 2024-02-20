@@ -3,7 +3,7 @@ import { IArtist } from "../../models";
 import { ETableNames } from "../../ETableNames";
 
 
-export const getById = async(id: number): Promise<IArtist | Error> => {
+export const GetById = async(id: number): Promise<IArtist | Error> => {
   try {
     const result = await Knex(ETableNames.artist).select("*").where("id", "=", id).first();
     if(typeof result === "object"){

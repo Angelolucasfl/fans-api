@@ -18,7 +18,14 @@ export const getByIdValidation = validation((getSchema) => ({
 
 
 export const getById = async (req: Request<IParamsProps>, res: Response) => {
-  const result = await ArtistProvider.getById(req.params.id);
+  if(!req.params.id){
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: {
+        default: "O parâmetro id é obrigatório"
+      }
+    });
+  }
+  const result = await ArtistProvider.GetById(req.params.id);
 
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

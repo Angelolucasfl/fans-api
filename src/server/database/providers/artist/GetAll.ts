@@ -3,7 +3,7 @@ import { IArtist } from "../../models";
 import { ETableNames } from "../../ETableNames";
 
 
-export const getAll = async(page: number, limit: number, filter: string, id = 0): Promise<IArtist[] | Error> => {
+export const GetAll = async(page: number, limit: number, filter: string, id = 0): Promise<IArtist[] | Error> => {
   try {
     const results = await Knex(ETableNames.artist).select("*")
       .where("id", Number(id)).orWhere("nome", "like", `%${filter}%`)

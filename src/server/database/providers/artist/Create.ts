@@ -2,7 +2,7 @@ import { ETableNames } from "../../ETableNames";
 import { Knex } from "../../knex";
 import { IArtist } from "../../models"; 
 
-export const create = async(artist: Omit<IArtist, "id">): Promise<number | Error> => {
+export const Create = async(artist: Omit<IArtist, "id">): Promise<number | Error> => {
   try{
     const [result] = await Knex(ETableNames.artist).insert(artist).returning("id");
     if(typeof result === "object"){
