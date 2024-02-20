@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
+import { ArtistProvider } from "../../database/providers/artist";
 import * as yup from "yup";
 
 
 interface IParamsProps {
-  id?: number;
+  id: number;
 }
 
 export const getByIdValidation = validation((getSchema) => ({
@@ -17,14 +18,15 @@ export const getByIdValidation = validation((getSchema) => ({
 
 
 export const getById = async (req: Request<IParamsProps>, res: Response) => {
-  if (Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    errors: {
-      default: "Registro não encontrado!"
-    }
-  });
+  const result = await ArtistProvider.getById(req.params.id);
 
-  return res.status(StatusCodes.OK).json({
-    id: req.params.id,
-    nome: "Nirvana",
-  });
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message
+      }
+    });
+  }
+
+  return res.status(StatusCodes.OK).json(result);
 };
