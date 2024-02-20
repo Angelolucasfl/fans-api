@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 
 interface IParamsProps {
-  id: number;
+  id?: number;
 }
 
 export const getByIdValidation = validation((getSchema) => ({
