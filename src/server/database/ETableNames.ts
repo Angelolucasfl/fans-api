@@ -1,3 +1,5 @@
 export enum ETableNames {
-  artist = "artist"
+  artist = "artist",
+  follower = "follower",
+
 }
