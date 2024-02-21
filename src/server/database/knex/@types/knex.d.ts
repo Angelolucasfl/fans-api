@@ -3,7 +3,7 @@ import { IArtist } from "../../models";
 declare module "knex/types/tables" {
   interface Tables {
     artist: IArtist
-    //follower: IFollower
+    follower: IFollower
     //user: IUser
   }
 }
