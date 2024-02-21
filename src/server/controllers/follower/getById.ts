@@ -1,32 +1,23 @@
 import { Request, Response } from "express";
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
-import { IArtist } from "../../database/models";
+import { FollowerProvider } from "../../database/providers/followers";
 import * as yup from "yup";
-import { ArtistProvider } from "../../database/providers/artist";
 
 
 interface IParamsProps {
   id?: number;
 }
 
-interface IBodyProps extends Omit<IArtist, "id">{
-  nome: string;
-}
-
-export const updateByIdValidation = validation((getSchema) => ({
+export const getByIdValidation = validation((getSchema) => ({
   params: getSchema<IParamsProps>(yup.object().shape({
     id: yup.number().integer().required().moreThan(0)
-  })),
-
-  body: getSchema<IBodyProps>(yup.object().shape({
-    nome: yup.string().required().min(1)
   }))
 }));
 
 
 
-export const updateById = async (req: Request<IParamsProps, {}, IBodyProps>, res: Response) => {
+export const getById = async (req: Request<IParamsProps>, res: Response) => {
   if(!req.params.id){
     return res.status(StatusCodes.BAD_REQUEST).json({
       errors: {
@@ -34,7 +25,8 @@ export const updateById = async (req: Request<IParamsProps, {}, IBodyProps>, res
       }
     });
   }
-  const result = await ArtistProvider.UpdateById(req.params.id, req.body);
+  const result = await FollowerProvider.GetById(req.params.id);
+
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       errors: {
@@ -43,5 +35,5 @@ export const updateById = async (req: Request<IParamsProps, {}, IBodyProps>, res
     });
   }
 
-  return res.status(StatusCodes.NO_CONTENT).send();
+  return res.status(StatusCodes.OK).json(result);
 };
