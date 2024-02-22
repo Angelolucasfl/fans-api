@@ -3,7 +3,7 @@ import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
 import { IArtist } from "../../database/models";
 import * as yup from "yup";
-import { ArtistProvider } from "../../database/providers/artist";
+import { ArtistProvider } from "../../database/providers/artists";
 
 
 interface IParamsProps {

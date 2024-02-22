@@ -3,7 +3,7 @@ import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
 import * as yup from "yup";
 import { IArtist } from "../../database/models";
-import { ArtistProvider } from "../../database/providers/artist";
+import { ArtistProvider } from "../../database/providers/artists";
 
 
 interface IBodyProps extends Omit<IArtist, "id">{}

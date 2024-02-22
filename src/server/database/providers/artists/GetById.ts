@@ -10,7 +10,7 @@ export const GetById = async(id: number): Promise<IArtist | Error> => {
       return result;
     }
 
-    return new Error("Erro ao consultar registro");
+    return new Error("Registro não encontrado");
   } catch (error) {
     console.error(error);
     return new Error("Erro ao consultar registro");

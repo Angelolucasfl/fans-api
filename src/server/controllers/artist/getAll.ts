@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
-import { ArtistProvider } from "../../database/providers/artist";
+import { ArtistProvider } from "../../database/providers/artists";
 import * as yup from "yup";
 
 
