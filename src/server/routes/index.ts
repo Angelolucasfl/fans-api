@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
-import { ArtistController } from "../controllers";
+import { ArtistController, FollowerController } from "../controllers";
 
 const router = Router();
 
@@ -27,5 +27,26 @@ router.put("/artist/:id",
 router.delete("/artist/:id",
   ArtistController.deleteByIdValidation,
   ArtistController.deleteById);
+
+
+router.post("/follower",
+  FollowerController.createValidation,
+  FollowerController.create);
+
+router.get("/follower",
+  FollowerController.getAllValidation,
+  FollowerController.getAll);
+
+router.get("/follower/:id",
+  FollowerController.getByIdValidation,
+  FollowerController.getById);
+
+router.put("/follower/:id",
+  FollowerController.updateByIdValidation,
+  FollowerController.updateById);
+
+router.delete("/follower/:id",
+  FollowerController.deleteByIdValidation,
+  FollowerController.deleteById);
 
 export { router };

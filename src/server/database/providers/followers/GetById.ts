@@ -10,9 +10,9 @@ export const GetById = async (id: number): Promise<IFollower | Error> => {
 
     if (result) return result;
 
-    return new Error("Erro ao consultar registro");
+    return new Error("Registro não encontrado");
   } catch (error) {
     console.log(error);
-    return new Error("Erro ao consultar registro");
+    return new Error("Registro não encontrado");
   }
 };

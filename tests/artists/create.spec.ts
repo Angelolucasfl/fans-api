@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { testServer } from "../jest.setup"; 
 
 describe("Artist - Create", () => {
+  
   it("Should insert a new artist in the application", async () => {
     const response1 = await testServer.post("/artist").send({
       nome: "Nirvana"

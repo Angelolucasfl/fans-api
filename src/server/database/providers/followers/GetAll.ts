@@ -12,6 +12,6 @@ export const GetAll = async(page: number, limit: number, filter: string): Promis
     return results;
   } catch (error) {
     console.error(error);
-    return new Error("Erro ao consultar artistas");
+    return new Error("Erro ao consultar registros");
   }
 };
