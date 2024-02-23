@@ -26,6 +26,7 @@ export const getAllValidation = validation((getSchema) => ({
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
   const results = await ArtistProvider.GetAll(req.query.page || 1, req.query.limit || 10, req.query.filter || "", Number(req.query.id));
   const count = await ArtistProvider.Count(req.query.filter);
+  console.log("iduser: ", req.headers.idUser);
 
   if (results instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
