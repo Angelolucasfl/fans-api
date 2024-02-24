@@ -31,8 +31,8 @@ describe("Artist - deleteById", () => {
     });
     expect(response1.statusCode).toEqual(StatusCodes.CREATED);
 
-    const response2 = await testServer.delete(`/artist/${response1.body}`).set({ Authorization: `Bearer ${accessToken}` }).send();
-    expect(response2.statusCode).toEqual(StatusCodes.NO_CONTENT);
+    const response2 = await testServer.delete(`/artist/${response1.body}`).send();
+    expect(response2.statusCode).toEqual(StatusCodes.UNAUTHORIZED);
   });
 
   it("Shouldn't be able to pass an invalid parameter type", async () => {

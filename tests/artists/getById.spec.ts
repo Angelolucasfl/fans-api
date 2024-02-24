@@ -35,8 +35,8 @@ describe("Artist - getById", () => {
 
     
     const response2 = await testServer.get(`/artist/${response1.body}`).send();
-    expect(response2.statusCode).toEqual(StatusCodes.OK);
-    expect(response2.body).toHaveProperty("nome");
+    expect(response2.statusCode).toEqual(StatusCodes.UNAUTHORIZED);
+    expect(response2.body).toHaveProperty("errors.default");
   });
 
   it("Shouldn't be able to pass an invalid parameter type", async () => {

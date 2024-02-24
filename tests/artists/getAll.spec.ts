@@ -29,15 +29,14 @@ describe("Artist - getAll", () => {
   });
 
   it("Shouldn't return the records without access token", async () => {
-    const response1 = await testServer.post("/artist").send({
+    const response1 = await testServer.post("/artist").set({ Authorization: `Bearer ${accessToken}` }).send({
       nome: "Nirvana"
     });
     expect(response1.statusCode).toEqual(StatusCodes.CREATED);
 
     const response2 = await testServer.get("/artist").send();
 
-    expect(Number(response2.header["x-total-count"])).toBeGreaterThan(0);
-    expect(response2.statusCode).toEqual(StatusCodes.OK);
+    expect(response2.statusCode).toEqual(StatusCodes.UNAUTHORIZED);
     expect(response2.body).toBeDefined();
   });
 
