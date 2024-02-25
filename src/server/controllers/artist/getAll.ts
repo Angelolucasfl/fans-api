@@ -24,7 +24,7 @@ export const getAllValidation = validation((getSchema) => ({
 
 
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
-  const results = await ArtistProvider.GetAll(req.query.page || 1, req.query.limit || 10, req.query.filter || "", Number(req.query.id));
+  const results = await ArtistProvider.GetAll(req.query.page || 1, req.query.limit || 10, req.query.filter || "", Number(req.query.id || 0));
   const count = await ArtistProvider.Count(req.query.filter);
   console.log("iduser: ", req.headers.idUser);
 
