@@ -1,0 +1,127 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Adicione aqui o titulo do seu projeto",
+    "description": "Adicione aqui a descrição do seu projeto",
+    "contact": {
+      "email": "angelolucasfl@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/angelolucass/"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Teste local"
+    },
+    {
+      "url": "https://fanapi.vercel.app",
+      "description": "Rodando em produção"
+    }
+  ],
+    "paths": {
+      "/cadastrar": {
+        "post": {
+          "summary": "Cria um novo usuário",
+          "description": "Cria um novo usuário com nome, email e senha.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Usuário criado com sucesso"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        }
+      },
+      "/entrar": {
+        "post": {
+          "summary": "Autentica um usuário",
+          "description": "Autentica um usuário com email e senha.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Credentials"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Autenticação bem-sucedida",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "accessToken": {
+                        "type": "string",
+                        "description": "O token de acesso gerado para o usuário autenticado"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Credenciais inválidas"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "required": ["nome", "email", "senha"],
+          "properties": {
+            "nome": {
+              "type": "string",
+              "description": "O nome do usuário"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "O email do usuário"
+            },
+            "senha": {
+              "type": "string",
+              "description": "A senha do usuário"
+            }
+          }
+        },
+        "Credentials": {
+          "type": "object",
+          "required": ["email", "senha"],
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "O email do usuário"
+            },
+            "senha": {
+              "type": "string",
+              "description": "A senha do usuário"
+            }
+          }
+        }
+      }
+    }
+  }
+  

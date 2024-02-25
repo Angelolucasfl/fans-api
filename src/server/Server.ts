@@ -3,6 +3,8 @@ import "./shared/services/translations.yup";
 import "dotenv/config";
 import { router } from "./routes";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocs from "../swagger.json";
 
 
 export class Server {
@@ -20,6 +22,7 @@ export class Server {
     }));
     this.server.use(express.json());
     this.server.use(express.urlencoded({ extended: true }));
+    this.server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
   }
 
   routes(): void {
