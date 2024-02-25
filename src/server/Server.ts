@@ -2,6 +2,7 @@ import express from "express";
 import "./shared/services/translations.yup";
 import "dotenv/config";
 import { router } from "./routes";
+import cors from "cors";
 
 
 export class Server {
@@ -14,6 +15,9 @@ export class Server {
   }
 
   private config(): void {
+    this.server.use(cors({
+      origin: process.env.ENABLED_CORS?.split(";") || []
+    }));
     this.server.use(express.json());
     this.server.use(express.urlencoded({ extended: true }));
   }

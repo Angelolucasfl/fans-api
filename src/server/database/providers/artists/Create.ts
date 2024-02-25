@@ -3,11 +3,12 @@ import { Knex } from "../../knex";
 import { IArtist } from "../../models"; 
 
 export const Create = async(artist: Omit<IArtist, "id">): Promise<number | Error> => {
-  try{
+  try {
     const [result] = await Knex(ETableNames.artist).insert(artist).returning("id");
-    if(typeof result === "object"){
+
+    if (typeof result === "object") {
       return result.id;
-    } else if(typeof result === "number"){
+    } else if (typeof result === "number") {
       return result;
     }
 
