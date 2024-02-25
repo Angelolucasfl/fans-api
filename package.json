@@ -25,7 +25,6 @@
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "pg": "^8.11.3",
-    "swagger-ui-express": "^5.0.0",
     "yup": "^1.3.3"
   },
   "devDependencies": {
@@ -36,7 +35,6 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/pg": "^8.11.1",
     "@types/supertest": "^6.0.2",
-    "@types/swagger-ui-express": "^4.1.6",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
