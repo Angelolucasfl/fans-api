@@ -16,9 +16,10 @@
     },
     {
       "url": "https://fanapi.vercel.app",
-      "description": "Rodando em produção"
+      "description": "Rodando em produção" 
     }
   ],
+  
     "paths": {
       "/cadastrar": {
         "post": {
