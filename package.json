@@ -11,7 +11,7 @@
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback --all",
     "knex:seed": "knex --knexfile ./src/server/database/knex/Environment.ts seed:run",
-    "vercel-build": "tsc && knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest"
+    "vercel-build": "tsc knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest && knex --knexfile ./src/server/database/knex/Environment.ts seed:run"
   },
   "keywords": [],
   "author": "",
