@@ -6,7 +6,9 @@ Esse projeto se trata de um serviço de catálogo de seguidores pra determinados
 
 ### ⚙️ Pré-requisitos
 
-Para ter acesso ao template você precisa ter o node/npm e o git instalados e seguir os passos descritos na proxima sessão.
+Tendo o node/npm e o git installados, siga os passos abaixo para ter acesso a API localmente ou acesse este link: [(https://drive.google.com/file/d/1AIXPerJ3ifzES97sp4UwiyHAJ2wDxy1S/view?usp=drive_link)] para uma demonstração em video das funcionalidades da API. 
+
+Alternativamente, após ver as funcionalidades no video, acesse https://fanapi.vercel.app/ usando algum client como postman ou insomnia e teste as funcionalidades da API em produção.
 
 
 
