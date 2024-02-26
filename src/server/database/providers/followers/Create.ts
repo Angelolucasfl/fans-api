@@ -5,7 +5,7 @@ import { IFollower } from "../../models";
 export const Create = async(follower: Omit<IFollower, "id">): Promise<number | Error> => {
   try{
     const [{ count }] = await Knex(ETableNames.artist)
-      .where("id", "=", follower.ArtistId)
+      .where("id", "=", follower.artistId)
       .count<[{ count: number }]>("* as count");
 
     if (count === 0) {

@@ -3,6 +3,6 @@
 export interface IFollower {
   id: number;
   email: string;
-  ArtistId: number;
+  artistId: number;
   nomeUsuario: string;
 }
