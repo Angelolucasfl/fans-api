@@ -6,7 +6,7 @@ import { ETableNames } from "../../ETableNames";
 export const UpdateById = async(id: number, follower: Omit<IFollower, "id">): Promise<void | Error> => {
   try {
     const [{ count }] = await Knex(ETableNames.artist)
-      .where("id", "=", follower.ArtistId)
+      .where("id", "=", follower.artistId)
       .count<[{ count: number }]>("* as count");
 
     if (count === 0) {
